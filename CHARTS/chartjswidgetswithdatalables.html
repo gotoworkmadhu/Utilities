@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
+	<script type="text/javascript" src="js/colorpicker.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+		<script type="text/javascript" src="chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
+<!-- https://www.eyecon.ro/colorpicker/#about -->
+</head>
+<body>
+<!-- https://adminlte.io/themes/v3/ -->
+<div class="container-fluid">
+		<style>
+	
+	.small-box {
+    border-radius: .25rem;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+	color:#fff;
+	 background-color: #17a2b8!important;
+}
+.small-box >a {
+    color: #fff!important;
+}
+.small-box>.inner {
+    padding: 10px;
+}
+.small-box h3, .small-box p {
+    z-index: 5;
+}
+.small-box h3 {
+    font-size: 38px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.small-box p {
+    font-size: 16px;
+}
+
+.small-box .icon {
+    color: rgba(0,0,0,.15);
+    z-index: 0;
+}
+.small-box .icon>i.fa, .small-box .icon>i.fab, .small-box .icon>i.far, .small-box .icon>i.fas, .small-box .icon>i.glyphicon, .small-box .icon>i.ion {
+    font-size: 70px;
+    top: 20px;
+}
+.small-box .icon>i {
+    font-size: 90px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: all .3s linear;
+}
+.small-box>.small-box-footer {
+    background: rgba(0,0,0,.1);
+    color: rgba(255,255,255,.8);
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.nodisp{
+display:none;
+}
+</style>
+		
+		
+	<div class="row nodisp" >
+          <div class="col-lg-3 col-6">
+            <div class="small-box ">
+              <div class="inner">
+                <h3 id="widgetvalue">150</h3>
+                <p id="widgettitle">New Orders</p>
+              </div>
+              <div class="icon widgeticon">
+                <i class="fa fa-shopping-cart"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+     </div>
+	 
+	 <div id="colorSelector" class="nodisp">Pick color <div style="width:50px;height:50px;"></div></div>
+	 
+	 
+	 <!-- for report container -->
+	 <div class="row">
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Device Usage</h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart1" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+   <!--2-->
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Vendor credit limit</h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart2" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+   <!--3-->
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Device Usage</h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart3" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+</div>
+	 <!--end for report container -->
+
+
+ <!-- for report container -->
+	 <div class="row">
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Dounut </h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart4" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+   <!--2-->
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Transactions</h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart5" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+   <!--3-->
+   <div class="col-md-4">
+      <div class="x_chart_panel   ">
+         <div class="x_chart_title">
+            <h2>Device Usage</h2>
+            <ul class="nav navbar-right chart_panel_toolbox">
+               <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+               <li><a class="collapse-link"><i class="fa fa-wrench"></i>
+                  </a>
+               </li>
+               <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+            </ul>
+            <div class="clearfix"></div>
+         </div>
+         <div class="x_content">
+          <canvas id="myChart6" width="400" height="300"></canvas>
+
+         </div>
+      </div>
+   </div>
+</div>
+	 <!--end for report container -->
+
+
+</div>
+<script>
+$(document).ready(function(){
+  $('#colorSelector').ColorPicker({
+	color: '#0000ff',
+	onShow: function (colpkr) {
+		$(colpkr).fadeIn(500);
+		return false;
+	},
+	onHide: function (colpkr) {
+		$(colpkr).fadeOut(500);
+		return false;
+	},
+	onChange: function (hsb, hex, rgb) {
+		$('#colorSelector div').css('backgroundColor', '#' + hex);
+	}
+});
+});
+</script>
+
+
+<script>
+var chartcolors1 =["#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"];
+var chartcolors =[
+  "#7cb5ec",
+  "#434348",
+  "#90ed7d",
+  "#f7a35c",
+  "#8085e9",
+  "#f15c80",
+  "#e4d354",
+  "#2b908f",
+  "#f45b5b",
+  "#91e8e1"
+];
+var chartcolors2 =[
+  "#147B73",
+  "#DC7F30",
+  "#6FB513",
+  "#209E28",
+  "#C6BF59",
+  "#906AE1",
+  "#63D799",
+  "#4E8A41",
+  "#E98D85",
+  "#8D53A0",
+  "#7D8100",
+  "#E430A7",
+  "#5E41E5",
+  "#CEBEB3",
+  "#34571A",
+  "#C0F261",
+  "#417BEF",
+  "#687214",
+  "#C10A5D",
+  "#4A00DC"
+]
+
+var chartcolors =[
+  "#ABDDF7",
+  "#A5CD66",
+  "#987F33",
+  "#E2DB5E",
+  "#6EE366",
+  "#92ED44",
+  "#CF6CBD",
+  "#7882CA",
+  "#B359F7",
+  "#48F9F3",
+  "#14B06C",
+  "#5E1AC0",
+  "#687750",
+  "#EEE44D",
+  "#255CEA",
+  "#07393C",
+  "#6DDE31",
+  "#6B8439",
+  "#0C67A0",
+  "#126C0B",
+  "#579419",
+  "#5A9522",
+  "#2435A9",
+  "#122B8A",
+  "#7F89D0",
+  "#D934D4",
+  "#6F2A41",
+  "#389792",
+  "#9D0F83",
+  "#D01450",
+  "#9EB1C7",
+  "#0CDA12",
+  "#826E0A",
+  "#C89638",
+  "#70D917",
+  "#E54C5C",
+  "#46B424",
+  "#703D27",
+  "#C3F61E",
+  "#45C1C9",
+  "#EBBF45",
+  "#5747DF",
+  "#67CBB1",
+  "#44F899",
+  "#018BC1",
+  "#C98AFB",
+  "#3D5534",
+  "#852A02",
+  "#4D3F77",
+  "#D0F518",
+  "#7DD817",
+  "#7141EC",
+  "#331ECD",
+  "#FCE641",
+  "#46DBF4",
+  "#317369",
+  "#7FFC14",
+  "#964C75",
+  "#B4DF50",
+  "#520535",
+  "#7616DA",
+  "#7EF943",
+  "#8FFCE0",
+  "#D2F7F7",
+  "#462F58",
+  "#22C4A7",
+  "#715960",
+  "#0FB866",
+  "#8E1A7B",
+  "#D07B9C",
+  "#6E07DF",
+  "#44C524",
+  "#CD03CE",
+  "#24FDA1",
+  "#20973A",
+  "#231474",
+  "#544FB3",
+  "#CB5980",
+  "#D3FD49",
+  "#D66B94",
+  "#1CEB8E",
+  "#063105",
+  "#22822F",
+  "#376A3B",
+  "#93872B",
+  "#0E641A",
+  "#621B77",
+  "#1455C8",
+  "#29ACAA",
+  "#E93771",
+  "#80F1B3",
+  "#00EB23",
+  "#50AC16",
+  "#6A5FE5",
+  "#7165E0",
+  "#ABFFAF",
+  "#4594C2",
+  "#5C4BE9",
+  "#328E0A",
+  "#2D3BD4"
+]
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+var totalrecords=100;
+var chartcolors=[];
+for (var i=0;i<totalrecords;i++ ) {
+	chartcolors.push(getRandomColor());
+}
+console.log(chartcolors);
+
+
+var ctx = document.getElementById('myChart1').getContext('2d');
+
+var myChart1 = new Chart(ctx, {
+    type: 'bar',
+		responsive:true,
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+	
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            //backgroundColor: [
+             //"#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+            //],
+			backgroundColor :chartcolors,
+            borderColor: [
+               
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+		
+    }
+});
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+
+var myChart2 = new Chart(ctx2, {
+    type: 'pie',
+		responsive:true,
+    data: {
+        labels: ['vendor1', 'vendor2', 'vendor3', 'vendor4', 'vendor5', 'vendor6'],
+	
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            //backgroundColor: [
+             //"#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+            //],
+			backgroundColor :chartcolors,
+            borderColor: [
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+				gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            }
+        }
+		
+    }
+});
+
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+	
+    data: {
+          labels: ['vendor1', 'vendor2', 'vendor3', 'vendor4', 'vendor5', 'vendor6'],
+	
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+           // backgroundColor: [
+           //  "#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+           // ],
+		   backgroundColor :chartcolors,
+            borderColor: [
+             
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+				 gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            },
+			
+        },
+		
+			elements: {
+				line: {
+					fill: false,
+					
+				},
+
+			}
+		
+    }
+});
+
+
+
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+
+var myChart4= new Chart(ctx4, {
+    type: 'doughnut',
+	
+    data: {
+         labels: ['vendor1', 'vendor2', 'vendor3', 'vendor4', 'vendor5', 'vendor6'],
+	
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+      //      backgroundColor: [
+            // "#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+           // ],
+		   backgroundColor :chartcolors,
+            borderColor: [
+             
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+				 gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            },
+			
+        },
+		
+		plugins: {
+					datalabels: {
+						//anchor: function(context) {
+							//var value = context.dataset.data[context.dataIndex];
+							//return value.v < 50 ? 'end' : 'center';
+						//},
+						anchor: 'end',
+						align:'end',
+						//align: function(context) {
+							//var value = context.dataset.data[context.dataIndex];
+							//return value.v < 50 ? 'end' : 'center';
+						//},
+						
+						//color: function(context) {
+							//var value = context.dataset.data[context.dataIndex];
+							//return value.v < 50 ? context.dataset.backgroundColor : 'white';
+						//},
+						font: {
+							weight: 'bold'
+						},
+						
+						
+					}
+				}
+		
+    }
+});
+
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+
+var myChart5= new Chart(ctx5, {
+    type: 'bar',
+	
+    data: {
+        labels: ['PR', 'RFQ', 'Quote', 'PO', 'PI', 'C'],
+	
+        datasets: [{
+            label: '# open',
+            data: [12, 19, 3, 5, 2, 3],
+           // backgroundColor: [
+           //  "#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+           // ],
+		   backgroundColor :chartcolors,
+            borderColor: [
+             
+            ],
+            borderWidth: 1
+        },
+		{
+            label: '# of Approved',
+            data: [3, 5, 9, 6, 8, 1],
+            backgroundColor: [
+             "#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+            ],
+            borderColor: [
+             
+            ],
+            borderWidth: 1
+        },
+		{
+            label: '# of Inporgress',
+            data: [6, 8, 3, 4,2, 11],
+            backgroundColor: [
+             "#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C","#34495E"
+            ],
+            borderColor: [
+             
+            ],
+            borderWidth: 1
+        },
+		
+		]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+				 gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            },
+			
+        }
+		
+    }
+});
+
+
+var ctx6 = document.getElementById('myChart6').getContext('2d');
+
+var myChart6= new Chart(ctx6, {
+    type: 'line',
+	
+    data: {
+         labels: ['vendor1', 'vendor2', 'vendor3', 'vendor4', 'vendor5', 'vendor6'],
+	
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+          // backgroundColor: [
+          //   "#34495E","#3498DB","#9B59B6","#1ABB9C","#9CC2CB","#E74C3C"
+           // ],
+		   backgroundColor :chartcolors,
+            borderColor: [
+             
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+		responsive:true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+				 gridLines: {
+                display:false
+            },
+            }],
+			 xAxes: [{
+                gridLines: {
+                display:false
+            },
+            }],
+			
+        },
+		 legend: {
+            display: false,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            },
+			
+        }
+		
+    }
+});
+
+/*
+
+
+["#EF331D", "#5A9689", "#BED9AB", "#F7128A", "#A8D294", "#329056", "#6BF4BC", "#F89452", "#78D494", "#30637A", "#1BC020", "#3C5234", "#897B19", "#9F51B8", "#EDD333", "#634CF5", "#3DFCCB", "#155BF5", "#D1C689", "#BEF2AB", "#7A938D", "#8A9CE5", "#2389E7", "#373976", "#05B0E8", "#BCC26C", "#49D661", "#77D94E", "#5909D0", "#F99558", "#69302D", "#5EC8F4", "#1AF861", "#D956BF", "#0C55B7", "#DB9BC0", "#FFBF40", "#D6602E", "#085E58", "#F8F196", "#5FE9BE", "#3FC6B5", "#9A0701", "#6C04EF", "#1400A9", "#82985B", "#900BA1", "#9D2018", "#8CE802", "#99B835", "#2C8E77", "#C0213E", "#77B6BD", "#3D0F9E", "#172402", "#2120B5", "#DDD374", "#4D0075", "#06ED95", "#5BADEE", "#70D8BA", "#2E0DF0", "#69E0B7", "#565856", "#85AE31", "#2BE0EE", "#894F08", "#0CA171", "#0FA66D", "#214C51", "#CA3B8B", "#1E2C0E", "#8B8591", "#D798FF", "#F74305", "#9F8C37", "#BD4597", "#D16561", "#26DB0A", "#0E2538", "#322D11", "#2BB946", "#3EE863", "#8D0CFC", "#6B40A8", "#FA3618", "#50AFFD", "#47B05D", "#5547FB", "#FAAB48", "#50E825", "#B1E863", "#12C8D7", "#914A46", "#DD9B91", "#0E1E8E", "#F9F277", "#11A81A", "#864B11", "#2899D9"]*/
+
+</script>
+<style>
+.x_chart_panel {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px 17px;
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #E6E9ED;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+    opacity: 1;
+    transition: all .2s ease;
+}
+.x_chart_title {
+    border-bottom: 2px solid #E6E9ED;
+    padding: 1px 5px 6px;
+    margin-bottom: 10px;
+	
+}.x_chart_title h2 {
+    margin: 5px 0 6px;
+    float: left;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 18px;
+
+}
+.chart_panel_toolbox {
+    float: right;
+    min-width: 70px;
+}
+.chart_panel_toolbox>li {
+    float: left;
+    cursor: pointer;
+}
+.chart_panel_toolbox>li>a {
+    padding: 5px;
+    color: #C5C7CB;
+    font-size: 14px;
+}
+
+
+</style>
+</body>
+</html>
